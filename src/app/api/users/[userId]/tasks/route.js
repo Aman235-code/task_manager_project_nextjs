@@ -1,3 +1,4 @@
+import { connectDb } from "@/helper/db"
 import { getResponseMessage } from "@/helper/responseMessage"
 import { Task } from "@/models/task"
 import { NextResponse } from "next/server"
@@ -14,6 +15,12 @@ export async function GET(req,{params}){
         return NextResponse.json(tasks);
 
     } catch (error) {
-        getResponseMessage("Failed to Get Tasks", 404, false)
+        NextResponse.json({
+            message:"Error",
+            status:404
+        },{
+            success: false
+        })
+        // getResponseMessage("Failed to Get Tasks", 404, false)
     }
 }
